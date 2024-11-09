@@ -24,8 +24,7 @@ module.exports = {
           radial-gradient(circle at top left, #04942C 4%, transparent 30%),
           radial-gradient(circle at bottom right, #160f4a 4%, transparent 30%)
         `,
-        'landing': "url('/landing.png')",
-        'rounds': "url('/records.png')"
+       'records':"url(/records.png)"
       },
       boxShadow: {
         'inset-custom': 'inset -4px -4px 0 rgba(0, 0, 0, 0.25)',

@@ -38,13 +38,6 @@ export function DialogDemo({ type, item, price, number }) {
     }
     setLoading(true);
     setUnits(Number(units));
-    console.log(JSON.stringify({
-      user: user,
-      item: item,
-      number: units,
-      price: price,
-      round: round,
-    }))
     const response = await fetch(`${process.env.REACT_APP_LINK}/cart/buy`, {
       method: "PATCH",
       headers: {

@@ -49,7 +49,11 @@ function Login() {
     }
   };
   return (
-    <div className="m-0 p-0 bg-white flex flex-col w-full h-screen items-center bg-landing">
+    <div className="m-0 p-0 bg-white flex flex-col w-full h-screen items-center" style={{
+      backgroundImage: `url('./landing.png')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
     <div className=" w-full md:h-28 flex flex-row items-center px-4">
       <img
         src={"/Finance Logo.png"}
