@@ -29,6 +29,7 @@ export function DialogDemo({ type, item, price, number }) {
   };
   
   const handleBuy = async () => {
+    const token = sessionStorage.getItem("token");
     handleSubmit();
     if (units < 1) {
       return toast.error("Give valid inputs");
@@ -69,6 +70,7 @@ export function DialogDemo({ type, item, price, number }) {
   };
 
   const handleSell = async () => {
+    const token = sessionStorage.getItem("token");
     handleSubmit();
     if (units < 1) {
       return toast.error("Give valid inputs");
