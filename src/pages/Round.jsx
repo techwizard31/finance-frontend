@@ -88,7 +88,7 @@ function Round() {
   };
 
   return (
-    <div className="min-h-screen bg-geometric-teal-pattern">
+    <div className="min-h-screen bg-geometric-dark-green-pattern">
       <nav>
         <ul className="flex sm:justify-between justify-evenly font-semibold items-center w-full h-fit mx-auto text-black py-3 sm:px-5">
           <li>
