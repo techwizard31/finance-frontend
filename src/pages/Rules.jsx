@@ -1,63 +1,88 @@
-import React from 'react'
+import React from "react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Rules() {
-    const [isButtonEnabled, setIsButtonEnabled] = useState(false);
-    const userData = sessionStorage.getItem("User");
-    const user = userData ? JSON.parse(userData) : null;
-    const navigate = useNavigate();
-    
-    useEffect(() => {
-      // Function to check if the current time is 6 PM or later
-      const checkTime = () => {
-        const currentTime = new Date();
-        const currentHour = currentTime.getHours();
-  
-        if (currentHour >= 0) {
-          setIsButtonEnabled(true);
-        }
-      };
-  
-      checkTime();
-  
-      const interval = setInterval(checkTime, 60000);
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const userData = sessionStorage.getItem("User");
+  const user = userData ? JSON.parse(userData) : null;
+  const token = sessionStorage.getItem("token");
+  const navigate = useNavigate();
 
-      return () => clearInterval(interval);
-    }, []);
-  
-    const handleStart = ()=>{
-      if(!isButtonEnabled){
-        toast.error('Game has not started yet')
-      }else{
-        if(user.round >= 10){
-            navigate("/Result");
-        }else{
-          navigate( `/rounds/${user.round}`);
-        }
+  useEffect(() => {
+    // Function to check if the current time is 6 PM or later
+    const checkTime = () => {
+      const currentTime = new Date();
+      const currentHour = currentTime.getHours();
+
+      if (currentHour >= 0) {
+        setIsButtonEnabled(true);
+      }
+    };
+
+    checkTime();
+
+    const interval = setInterval(checkTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleResult = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_LINK}/cart/myresult`,
+      {
+        method: "POST",
+        body: JSON.stringify({ user: user }),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
+    if (!response.ok) {
+      console.log(json.error);
+    }
+    if (response.ok) {
+      sessionStorage.setItem("User", JSON.stringify(json.user));
+    }
+  };
+
+  const handleStart = () => {
+    if (!isButtonEnabled) {
+      toast.error("Game has not started yet");
+    } else {
+      if (user.round >= 10) {
+        handleResult();
+        navigate("/Result");
+      } else {
+        navigate(`/rounds/${user.round}`);
       }
     }
+  };
   return (
     <div className="min-h-screen bg-radial-topbottom-corners sm:px-6 py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-8">
         <div className=" w-full md:h-28 flex flex-row items-center px-4">
-          <Image
+          <img
             src={"/Finance Logo.png"}
             width={100}
             height={100}
             className="md:w-24 md:h-24 w-16 h-16"
             alt="Ima"
+            loading="lazy"
           />
           <h4 className="font-playflair sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1">
             Era Of Estates
           </h4>
-          <Image
+          <img
             src={"/SAC Logo.png"}
             width={100}
             height={100}
             className="md:w-20 md:h-20 ml-auto w-16 h-16 tablet:w-12 tablet:h-12 sm_mobile:w-12 sm_mobile:h-12"
             alt="image"
+            loading="lazy"
           />
         </div>
         <div className="w-full h-[2px] bg-gradient-to-r from-accent to-primary">
@@ -180,13 +205,13 @@ function Rules() {
             isButtonEnabled ? "bg-accent hover:scale-105" : "bg-gray-400"
           }`}
           disabled={!isButtonEnabled}
-          onClick={()=>handleStart()}
+          onClick={() => handleStart()}
         >
           Start
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Rules
+export default Rules;
