@@ -24,7 +24,7 @@ export function TableDemo({ type }) {
   }
   function getImg(name) {
     const commodity = Data.find((item) => item.Commodityname === name);
-    return commodity ? commodity.Image : null;
+    return commodity.Image;
   }
 
   function getChange(name, round) {
@@ -84,12 +84,11 @@ export function TableDemo({ type }) {
               <TableCell className="font-medium">
               <div className='flex gap-5 mb-2 items-center'>
                 <img
-                  src={getImg(invoice.Img)}
+                  src={getImg(invoice.item)}
                   alt={invoice.item}
                   width={30}
                   height={30}
                 />
-                {invoice.item}
               </div>
               </TableCell>
               <TableCell>
