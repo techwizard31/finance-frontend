@@ -10,11 +10,11 @@ import {
 
 function Result() {
   const token = sessionStorage.getItem("token");
-  const userData = sessionStorage.getItem("User");
-  const user = userData ? JSON.parse(userData) : null;
   const [winner, setWinner] = useState();
-
+  
   const getResult = async () => {
+    const userData = sessionStorage.getItem("User");
+    const user = userData ? JSON.parse(userData) : null;
     const response = await fetch(
       `https://finance-backend-2ssq.onrender.com/cart/myresult`,
       {

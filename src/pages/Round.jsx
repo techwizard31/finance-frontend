@@ -13,6 +13,8 @@ function Round() {
   const user = userData ? JSON.parse(userData) : null;
 
   useEffect(() => {
+    setTimeLeft(60); // Reset timer to 60 seconds whenever round changes
+    
     const timerInterval = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
