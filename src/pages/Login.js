@@ -75,7 +75,7 @@ function Login() {
         alt="Ima"
         loading="lazy"
       />
-      <h4 className="font-playflair sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1">
+      <h4 className="font-oxanium font-normal sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1">
         Era Of Estates
       </h4>
       <img

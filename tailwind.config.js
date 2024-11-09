@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         playfair: ['Playfair', 'serif'],
+        oxanium: ['Oxanium', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
       backgroundImage: {
