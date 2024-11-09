@@ -1,6 +1,6 @@
-import React, { useState , useEffect }from 'react';
-import { useParams,useNavigate } from "react-router-dom";
-import Card from '../components/Card'
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Card from "../components/Card";
 
 function Round() {
   const navigate = useNavigate();
@@ -12,9 +12,30 @@ function Round() {
   const userData = sessionStorage.getItem("User");
   const user = userData ? JSON.parse(userData) : null;
 
+  const getResult = async () => {
+    const response = await fetch(
+      `https://finance-backend-2ssq.onrender.com/cart/myresult`,
+      {
+        method: "POST",
+        body: JSON.stringify({ user: user }),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
+    if (!response.ok) {
+      console.log(json.error);
+    }
+    if (response.ok) {
+      sessionStorage.setItem("User", JSON.stringify(json.user));
+    }
+  };
+
   useEffect(() => {
     setTimeLeft(60); // Reset timer to 60 seconds whenever round changes
-    
+
     const timerInterval = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
@@ -59,27 +80,6 @@ function Round() {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
-  const getResult = async () => {
-    const response = await fetch(
-      `https://finance-backend-2ssq.onrender.com/cart/myresult`,
-      {
-        method: "POST",
-        body: JSON.stringify({ user: user }),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const json = await response.json();
-    if (!response.ok) {
-      console.log(json.error);
-    }
-    if (response.ok) {
-      sessionStorage.setItem("User", JSON.stringify(json.user));
-    }
-  };
-
   const handleQuit = () => {
     getResult();
     navigate("/Result");
@@ -103,7 +103,7 @@ function Round() {
             <li>
               <button
                 className="bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 sm:px-4 py-1 sm:py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                onClick={()=>handleQuit()}
+                onClick={() => handleQuit()}
               >
                 <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                 Quit
