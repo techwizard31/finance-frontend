@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
+import { toast } from "react-toastify";
 
 function Round() {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function Round() {
         getResult();
         navigate("/Result");
       } else {
+        toast.success("Moving on to the next round")
         navigate(`/rounds/${round + 1}`);
       }
     }, 60000);
@@ -86,7 +88,7 @@ function Round() {
   };
 
   return (
-    <section className="min-h-screen bg-records" style={{
+    <section className="min-h-screen" style={{
       backgroundImage: `url('./record.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
