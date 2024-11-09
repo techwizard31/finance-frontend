@@ -38,6 +38,7 @@ export function DialogDemo({ type, item, price, number }) {
     }
     setLoading(true);
     setUnits(Number(units));
+    console.log('buy')
     const response = await fetch(
       `https://finance-backend-2ssq.onrender.com/cart/buy`,
       {
@@ -56,15 +57,16 @@ export function DialogDemo({ type, item, price, number }) {
       }
     );
     
+    const json = await response.json();
     if (!response.ok) {
-      toast.error(response.statusText);
+      toast.error(json.error);
       setUnits(1);
       setLoading(false);
+      console.log(json)
     }
     
     if (response.ok) {
-      handleSubmit();
-      const json = await response.json();
+      // handleSubmit();
       sessionStorage.setItem("User", JSON.stringify(json));
       setUnits(1);
       setLoading(false);
@@ -73,6 +75,7 @@ export function DialogDemo({ type, item, price, number }) {
   };
   
   const handleSell = async () => {
+    console.log('sell')
     const token = sessionStorage.getItem("token");
     if (units < 1) {
       return toast.error("Give valid inputs");
@@ -101,18 +104,19 @@ export function DialogDemo({ type, item, price, number }) {
       }
     );
     
+    const json = await response.json();
     if (!response.ok) {
-      toast.error(response.statusText);
+      toast.error(json.error);
       setUnits(1);
       setLoading(false);
+      console.log(json)
     }
     
     if (response.ok) {
-      const json = await response.json();
       sessionStorage.setItem("User", JSON.stringify(json));
       setUnits(1);
       setLoading(false);
-      handleSubmit();
+      // handleSubmit();
       toast.success("Transaction Successful");
     }
   };
