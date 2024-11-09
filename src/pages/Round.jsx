@@ -88,7 +88,7 @@ function Round() {
   };
 
   return (
-    <section className="min-h-screen bg-radial-bottom-corners" style={{
+    <div className="min-h-screen" style={{
       backgroundImage: `url('./new.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -127,7 +127,7 @@ function Round() {
         <Card type={"Buy"} />
         <Card type={"Sell"} />
       </div>
-    </section>
+    </div>
   );
 }
 
