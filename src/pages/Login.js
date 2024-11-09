@@ -100,7 +100,7 @@ function Login() {
           >
             <h2
               id="form-title"
-              className="text-center text-3xl font-bold mb-10 text-gray-800"
+              className="text-center text-3xl font-bold mb-10 text-gray-800 font-oxanium"
             >
               Login
             </h2>
@@ -120,7 +120,7 @@ function Login() {
                 onChange={(e) => setNumber(e.target.value)}
               />
               <button
-                className="w-full h-12 bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all duration-300 hover:scale-105"
+                className="w-full h-12 bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-all duration-300 hover:scale-105 font-oxanium"
                 onClick={() => handleVerify()}
               >
                 Login

@@ -96,13 +96,13 @@ function Round() {
       <nav>
         <ul className="flex sm:justify-between justify-evenly font-semibold items-center w-full h-fit mx-auto text-black py-3 sm:px-5">
           <li>
-            <p className="text-xl sm:text-4xl tracking-wider text-[#04942C]">
+            <p className="text-xl sm:text-4xl tracking-wider text-[#04942C] font-oxanium">
               ROUND-{round}
             </p>
           </li>
           <div className="rightnav sm:w-1/2 flex justify-evenly gap-2 items-center">
             <li>
-              <p className="text-sm sm:text-2xl tracking-wider text-[#04942C]">
+              <p className="text-sm sm:text-2xl tracking-wider text-[#04942C] font-oxanium">
                 POINTS-{user?.amount}
               </p>
             </li>
@@ -111,12 +111,12 @@ function Round() {
                 className="bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 sm:px-4 py-1 sm:py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
                 onClick={() => handleQuit()}
               >
-                <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)] font-oxanium"></span>
                 Quit
               </button>
             </li>
             <li>
-              <p className="text-sm sm:text-2xl tracking-wider text-[#04942C]">
+              <p className="text-sm sm:text-2xl tracking-wider text-[#04942C] font-oxanium">
                 Time left: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
               </p>
             </li>

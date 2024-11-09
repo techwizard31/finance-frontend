@@ -73,7 +73,7 @@ function Rules() {
             alt="Ima"
             loading="lazy"
           />
-          <h4 className="font-playflair sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1">
+          <h4 className="font-playflair sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1 font-oxanium">
             Era Of Estates
           </h4>
           <img
@@ -88,7 +88,7 @@ function Rules() {
         <div className="w-full h-[2px] bg-gradient-to-r from-accent to-primary">
           .
         </div>
-        <section className="space-y-4">
+        <section className="space-y-4 font-oxanium">
           <h2 className="text-3xl font-semibold text-[#04942C]">
             Game Overview
           </h2>

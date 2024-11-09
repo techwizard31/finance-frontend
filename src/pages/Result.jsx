@@ -70,7 +70,7 @@ function Result() {
   }, []);
 
   return (
-    <section className="h-screen bg-radial-bottom-corners px-2">
+    <section className="h-screen bg-radial-bottom-corners px-2 font-oxanium">
       <div className=" w-full md:h-28 flex flex-row items-center px-4">
         <img
           src={"/Finance Logo.png"}

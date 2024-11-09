@@ -129,7 +129,7 @@ export function DialogDemo({ type, item, price, number }) {
             <Button variant="outline">{type === "Buy" ? "Buy" : "Sell"}</Button>
           </DialogTrigger>
           {isDialogOpen && (
-            <DialogContent className="sm:max-w-[425px] bg-white">
+            <DialogContent className="sm:max-w-[425px] bg-white font-oxanium">
               <DialogHeader>
                 <DialogTitle>Cart</DialogTitle>
                 <DialogDescription>
