@@ -6,52 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../components/Table.tsx"
-
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-]
+} from "../components/Table.tsx";
 
 function Result() {
   const token = sessionStorage.getItem("token");
@@ -97,17 +52,17 @@ function Result() {
     }
   };
 
-useEffect(() => {
+  useEffect(() => {
     if (user && user.finalamount === 0) {
-        getResult();
+      getResult();
     }
     if (token) {
-        getWinner();
+      getWinner();
     }
-}, [user, token]); 
+  }, [user, token]);
 
   return (
-    <section className='h-screen bg-radial-bottom-corners px-2'>
+    <section className="h-screen bg-radial-bottom-corners px-2">
       <div className=" w-full md:h-28 flex flex-row items-center px-4">
         <img
           src={"/Finance Logo.png"}
@@ -129,42 +84,56 @@ useEffect(() => {
           loading="lazy"
         />
       </div>
-      <div className="w-full h-[2px] bg-gradient-to-r from-accent to-primary mb-3">.</div> 
-      <div
-        className="relative drop-shadow-xl w-full h-[80%] overflow-hidden rounded-xl bg-[#3d3c3d]"
-      >
+      <div className="w-full h-[2px] bg-gradient-to-r from-accent to-primary mb-3">
+        .
+      </div>
+      <div className="relative drop-shadow-xl w-full h-[80%] overflow-hidden rounded-xl bg-[#3d3c3d]">
         <div
           className="absolute flex flex-col items-center justify-center
           text-white z-[1] opacity-90 rounded-xl inset-0.5 bg-[#323132]"
         >
           <ul>
-            <li className='text-4xl text-white sm:mx-60 mx- mb-5'>
+            <li className="text-4xl text-white sm:mx-60 mx- mb-5">
               Leaderboard
             </li>
           </ul>
-          <Table className='w-[80%] mx-auto'>
-          <TableHeader className='mx-auto'>
-            <TableRow>
-              <TableHead className="text-center">Rank</TableHead>
-              <TableHead className='text-center'>Name</TableHead>
-              <TableHead className="text-center">Points</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice) => (
-              <TableRow key={invoice.invoice}>
-                <TableCell className="font-medium text-center">{invoice.invoice}</TableCell>
-                <TableCell className='text-center'>{invoice.paymentStatus}</TableCell>
-                <TableCell className="text-center">{invoice.totalAmount}</TableCell>
+          <Table className="w-[80%] mx-auto">
+            <TableHeader className="mx-auto">
+              <TableRow>
+                <TableHead className="text-center">Rank</TableHead>
+                <TableHead className="text-center">Name</TableHead>
+                <TableHead className="text-center">Points</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {winner && winner.length > 0 ? (
+                winner.map((invoice, index) => (
+                  <TableRow key={invoice.name}>
+                    <TableCell className="font-medium text-center">
+                      {index + 1} {/* Rank */}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {invoice.name} {/* Name */}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {invoice.finalamount} {/* Final Amount */}
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={3} className="text-center">
+                    No winners available
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
         </div>
         <div className="absolute w-56 h-48 bg-white blur-[50px] -left-1/2 -top-1/2"></div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Result;
