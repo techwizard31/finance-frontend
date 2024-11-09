@@ -30,7 +30,6 @@ export function DialogDemo({ type, item, price, number }) {
 
   const handleBuy = async () => {
     const token = sessionStorage.getItem("token");
-    handleSubmit();
     if (units < 1) {
       return toast.error("Give valid inputs");
     }
@@ -56,14 +55,15 @@ export function DialogDemo({ type, item, price, number }) {
         }),
       }
     );
-
+    
     if (!response.ok) {
       toast.error(response.statusText);
       setUnits(1);
       setLoading(false);
     }
-
+    
     if (response.ok) {
+      handleSubmit();
       const json = await response.json();
       sessionStorage.setItem("User", JSON.stringify(json));
       setUnits(1);
@@ -71,10 +71,9 @@ export function DialogDemo({ type, item, price, number }) {
       toast.success("Transaction Successful");
     }
   };
-
+  
   const handleSell = async () => {
     const token = sessionStorage.getItem("token");
-    handleSubmit();
     if (units < 1) {
       return toast.error("Give valid inputs");
     }
@@ -83,7 +82,7 @@ export function DialogDemo({ type, item, price, number }) {
     }
     setLoading(true);
     setUnits(Number(units));
-
+    
     const response = await fetch(
       `https://finance-backend-2ssq.onrender.com/cart/sell`,
       {
@@ -101,18 +100,19 @@ export function DialogDemo({ type, item, price, number }) {
         }),
       }
     );
-
+    
     if (!response.ok) {
       toast.error(response.statusText);
       setUnits(1);
       setLoading(false);
     }
-
+    
     if (response.ok) {
       const json = await response.json();
       sessionStorage.setItem("User", JSON.stringify(json));
       setUnits(1);
       setLoading(false);
+      handleSubmit();
       toast.success("Transaction Successful");
     }
   };
