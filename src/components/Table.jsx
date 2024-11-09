@@ -1,10 +1,7 @@
-"use client";
-import Image from "next/image";
 import { DialogDemo } from "./DialogBox";
 import Data from '../lib/data';
 import { ChartCandlestick } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -12,34 +9,14 @@ import {
   TableHeader,
   TableRow,
   TableCell,
-} from "../ui/Table";
+} from "./Table.tsx";
+import { useParams } from "react-router-dom";
 
 export function TableDemo({ type }) {
-  const searchParams = useSearchParams();
-  const [round, setRound] = useState(1);
-  const [user, setUser] = useState(null);
-
-  const updateUserFromSessionStorage = () => {
-    const userData = sessionStorage.getItem("User");
-    const users = userData ? JSON.parse(userData) : null
-    setUser(users);
-  };
-
-  // Set up user data from sessionStorage and add event listener
-  useEffect(() => {
-    updateUserFromSessionStorage();
-    const handleSessionStorageUpdate = () => updateUserFromSessionStorage();
-    window.addEventListener("sessionStorageUpdated", handleSessionStorageUpdate);
-
-    return () => {
-      window.removeEventListener("sessionStorageUpdated", handleSessionStorageUpdate);
-    };
-  }, []);
-
-  useEffect(() => {
-    const roundParam = searchParams.get("round");
-    setRound(roundParam ? parseInt(roundParam, 10) : 1);
-  }, [searchParams]);
+  let { round } = useParams();
+  const token = sessionStorage.getItem("token");
+  const userData = sessionStorage.getItem("User");
+  const user = userData ? JSON.parse(userData) : null;
 
   function getPrice(name) {
     const commodity = Data.find((item) => item.Commodityname === name);
@@ -77,7 +54,7 @@ export function TableDemo({ type }) {
             <TableRow key={commodity.Commodityname}>
               <TableCell className="font-medium">
               <div className='flex gap-5 mb-2 items-center'>
-                <Image
+                <img
                   src={commodity.Image}
                   alt={commodity.Commodityname}
                   width={30}

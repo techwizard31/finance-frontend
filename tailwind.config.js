@@ -1,9 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // Adjusted for typical React src folder structure
   ],
   theme: {
     extend: {
@@ -14,7 +12,7 @@ module.exports = {
         accent: '#04942C',
       },
       fontFamily: {
-        playfair: ['Playfair', 'serif'], // Define the font family
+        playfair: ['Playfair', 'serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
       backgroundImage: {
@@ -26,26 +24,22 @@ module.exports = {
           radial-gradient(circle at top left, #04942C 4%, transparent 30%),
           radial-gradient(circle at bottom right, #160f4a 4%, transparent 30%)
         `,
-        'leftbull':"url('/leftbull.png')",
-        'rightbull':"url('/rightbull.png')",
-        'landing':"url('/landing.png')",
-        'rounds':"url('/records.png')"
+        'landing': "url('/landing.png')",
+        'rounds': "url('/records.png')"
       },
       boxShadow: {
         'inset-custom': 'inset -4px -4px 0 rgba(0, 0, 0, 0.25)',
         'inset-box': 'inset -3px -3px 0 rgba(0, 0, 0, 0.5)',
       },
-      screens:{
-        sm_mobile:{
-          max:"450px"
+      screens: {
+        sm_mobile: {
+          max: "450px",
         },
-        tablet:{
-          min: '450px', max: '580px'
+        tablet: {
+          min: "450px", max: "580px",
         }
       }
     },
   },
   plugins: [],
 };
-
-

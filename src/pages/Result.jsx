@@ -1,6 +1,4 @@
-"use client";
 import React, { useEffect, useState } from "react";
-import Image from 'next/image'
 import {
   Table,
   TableBody,
@@ -8,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/Table"
+} from "../components/Table.tsx"
 
 const invoices = [
   {
@@ -56,84 +54,79 @@ const invoices = [
 ]
 
 function Result() {
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState("");
+  const token = sessionStorage.getItem("token");
+  const userData = sessionStorage.getItem("User");
+  const user = userData ? JSON.parse(userData) : null;
   const [winner, setWinner] = useState();
 
   const getResult = async () => {
-    const response = await fetch(`api/cart`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-        body: JSON.stringify({
-          user: user,
-        }),
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_LINK}/cart/myresult`,
+      {
+        method: "POST",
+        body: JSON.stringify({ user: user }),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
     if (!response.ok) {
-      console.log(response.statusText);
+      console.log(json.error);
     }
     if (response.ok) {
-      const json = await response.json();
-      sessionStorage.setItem("User", JSON.stringify(json));
-      setUser(json);
-      console.log(json)
+      sessionStorage.setItem("User", JSON.stringify(json.user));
     }
   };
-  const getWinner = async (token) => {
-    const response = await fetch(`api/cart`, {
+
+  const getWinner = async () => {
+    const response = await fetch(`${process.env.REACT_APP_LINK}/cart/result`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
+    const json = await response.json();
     if (!response.ok) {
-      console.log(response.statusText);
+      console.log(json.error);
     }
     if (response.ok) {
-      const json = await response.json();
-      const data = json;
-      setWinner(data[0].name);
+      setWinner(json);
     }
   };
-
-  useEffect(() => {
-    const userData = sessionStorage.getItem("User");
-    const users = userData ? JSON.parse(userData) : null;
-    setUser(users);
-    setToken(sessionStorage.getItem("token"));
-}, []); // Runs only once on mount
 
 useEffect(() => {
     if (user && user.finalamount === 0) {
         getResult();
     }
     if (token) {
-        getWinner(token);
+        getWinner();
     }
 }, [user, token]); 
 
   return (
     <section className='h-screen bg-radial-bottom-corners px-2'>
       <div className=" w-full md:h-28 flex flex-row items-center px-4">
-        <Image
+        <img
           src={"/Finance Logo.png"}
           width={100}
           height={100}
           className="md:w-24 md:h-24 w-16 h-16"
           alt="Ima"
+          loading="lazy"
         />
         <h4 className="font-playflair sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1">
           Era Of Estates
         </h4>
-        <Image
+        <img
           src={"/SAC Logo.png"}
           width={100}
           height={100}
           className="md:w-20 md:h-20 ml-auto w-16 h-16"
           alt="image"
+          loading="lazy"
         />
       </div>
       <div className="w-full h-[2px] bg-gradient-to-r from-accent to-primary mb-3">.</div> 

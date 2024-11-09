@@ -1,5 +1,4 @@
-"use client";
-import { Button } from "../ui/button";
+import { Button } from "./button.tsx";
 import {
   Dialog,
   DialogContent,
@@ -8,59 +7,29 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/Dialog";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+} from "./Dialog.tsx";
+import { Input } from "./input.tsx";
+import { Label } from "./label.tsx";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 export function DialogDemo({ type, item, price, number }) {
   const [isDialogOpen, setIsDialogOpen] = useState(true);
   const [units, setUnits] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
-  const searchParams = useSearchParams();
-  const [round, setRound] = useState(1);
+  let { round } = useParams();
+  const token = sessionStorage.getItem("token");
+  const userData = sessionStorage.getItem("User");
+  const user = userData ? JSON.parse(userData) : null;
 
   const handleSubmit = (event) => {
     //event.preventDefault();
     setIsDialogOpen(false);
   };
-
-  // Function to update user state from sessionStorage
-  const updateUserFromSessionStorage = () => {
-    const userData = sessionStorage.getItem("User");
-    setUser(userData ? JSON.parse(userData) : null);
-  };
-
-  useEffect(() => {
-    updateUserFromSessionStorage();
-    const handleStorageChange = (event) => {
-      if (event.key === "User") {
-        updateUserFromSessionStorage();
-      }
-    };
-    
-    // Add event listener for storage changes
-    window.addEventListener("storage", handleStorageChange);
-    
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  useEffect(()=>{
-    const roundParam = searchParams.get("round");
-    setRound(roundParam ? parseInt(roundParam, 10) : 1);
-  },[searchParams])
   
   const handleBuy = async () => {
     handleSubmit();
-    const token = sessionStorage.getItem("token");
-    const userData = sessionStorage.getItem("User");
-    setUser(userData ? JSON.parse(userData) : null);
     if (units < 1) {
       return toast.error("Give valid inputs");
     }
@@ -76,7 +45,7 @@ export function DialogDemo({ type, item, price, number }) {
       price: price,
       round: round,
     }))
-    const response = await fetch(`api/mongo`, {
+    const response = await fetch(`${process.env.REACT_APP_LINK}/cart/buy`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -100,10 +69,6 @@ export function DialogDemo({ type, item, price, number }) {
     if (response.ok) {
       const json = await response.json();
       sessionStorage.setItem("User", JSON.stringify(json));
-      
-      // Dispatch a custom event after updating sessionStorage
-      window.dispatchEvent(new Event("sessionStorageUpdated"));
-      setUser(json)
       setUnits(1);
       setLoading(false);
       toast.success("Transaction Successful");
@@ -112,7 +77,6 @@ export function DialogDemo({ type, item, price, number }) {
 
   const handleSell = async () => {
     handleSubmit();
-    const token = sessionStorage.getItem("token");
     if (units < 1) {
       return toast.error("Give valid inputs");
     }
@@ -122,7 +86,7 @@ export function DialogDemo({ type, item, price, number }) {
     setLoading(true);
     setUnits(Number(units));
 
-    const response = await fetch(`api/cart`, {
+    const response = await fetch(`${process.env.REACT_APP_LINK}/cart/sell`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -146,10 +110,6 @@ export function DialogDemo({ type, item, price, number }) {
     if (response.ok) {
       const json = await response.json();
       sessionStorage.setItem("User", JSON.stringify(json));
-      
-      // Dispatch a custom event after updating sessionStorage
-      window.dispatchEvent(new Event("sessionStorageUpdated"));
-      
       setUnits(1);
       setLoading(false);
       toast.success("Transaction Successful");

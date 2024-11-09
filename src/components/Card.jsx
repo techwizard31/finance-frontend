@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableDemo } from './Table';
+import { TableDemo } from './Table.jsx';
 
 const Card = ({type}) => {
   return (
