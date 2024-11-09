@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "../components/Table.tsx";
+import Data from "../lib/data.jsx";
 
 function Result() {
   const token = sessionStorage.getItem("token");
@@ -15,44 +16,53 @@ function Result() {
   const user = userData ? JSON.parse(userData) : null;
   
   const getResult = async () => {
-    const userData = sessionStorage.getItem("User");
-    const user = userData ? JSON.parse(userData) : null;
-    const response = await fetch(
-      `https://finance-backend-2ssq.onrender.com/cart/myresult`,
-      {
-        method: "POST",
-        body: JSON.stringify({ user: user }),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      const userData = sessionStorage.getItem("User");
+      const user = userData ? JSON.parse(userData) : null;
+      const response = await fetch(
+        `https://finance-backend-2ssq.onrender.com/cart/myresult`,
+        {
+          method: "POST",
+          body: JSON.stringify({ user: user }),
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const json = await response.json();
+      if (!response.ok) {
+        console.log(json);
+      } else {
+        sessionStorage.setItem("User", JSON.stringify(json.user));
       }
-    );
-    const json = await response.json();
-    if (!response.ok) {
-      console.log(json);
-    }
-    if (response.ok) {
-      sessionStorage.setItem("User", JSON.stringify(json.user));
+    } catch (error) {
+      console.error("Error fetching results:", error);
     }
   };
-
+  
   const getWinner = async () => {
-    const response = await fetch(`https://finance-backend-2ssq.onrender.com/cart/result`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const json = await response.json();
-    if (!response.ok) {
-      console.log(json.error);
+    try {
+      const response = await fetch(
+        `https://finance-backend-2ssq.onrender.com/cart/result`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const json = await response.json();
+      if (!response.ok) {
+        console.log(json.error);
+      } else {
+        setWinner(json);
+      }
+    } catch (error) {
+      console.error("Error fetching winners:", error);
     }
-    if (response.ok) {
-      setWinner(json);
-    }
-  };
+  };  
 
   useEffect(() => {
     getResult();
