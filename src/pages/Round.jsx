@@ -87,7 +87,7 @@ function Round() {
 
   return (
     <section className="min-h-screen" style={{
-      backgroundImage: `url('./rounds.png')`,
+      backgroundImage: `url('./records.png')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
