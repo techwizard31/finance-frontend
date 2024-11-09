@@ -25,12 +25,12 @@ module.exports = {
           radial-gradient(circle at top left, #04942C 4%, transparent 30%),
           radial-gradient(circle at bottom right, #160f4a 4%, transparent 30%)
         `,
-        'geometric-teal-pattern': `
-          linear-gradient(45deg, #134e4a 1%, transparent 10%),
-          linear-gradient(-45deg, #134e4a 1%, transparent 10%),
-          linear-gradient(45deg, transparent 90%, #134e4a 99%),
-          linear-gradient(-45deg, transparent 90%, #134e4a 99%),
-          linear-gradient(to right, #042f2e, #115e59)
+        'geometric-dark-green-pattern': `
+          linear-gradient(45deg, rgba(0, 0, 0, 0.4) 1%, transparent 10%),
+          linear-gradient(-45deg, rgba(0, 0, 0, 0.4) 1%, transparent 10%),
+          linear-gradient(45deg, transparent 90%, rgba(0, 0, 0, 0.3) 99%),
+          linear-gradient(-45deg, transparent 90%, rgba(0, 0, 0, 0.3) 99%),
+          linear-gradient(to right, #022c22, #064e3b)
         `,
       },
       boxShadow: {
