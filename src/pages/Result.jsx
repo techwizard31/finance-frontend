@@ -108,13 +108,13 @@ function Result() {
                 winner.map((invoice, index) => (
                   <TableRow key={invoice.name}>
                     <TableCell className="font-medium text-center">
-                      {index + 1} {/* Rank */}
+                      {index + 1} 
                     </TableCell>
                     <TableCell className="text-center">
-                      {invoice.name} {/* Name */}
+                      {invoice.name} 
                     </TableCell>
                     <TableCell className="text-center">
-                      {invoice.finalamount} {/* Final Amount */}
+                      {invoice.finalamount}
                     </TableCell>
                   </TableRow>
                 ))

@@ -86,7 +86,11 @@ function Round() {
   };
 
   return (
-    <section className="bg-rounds min-h-screen">
+    <section className="min-h-screen" style={{
+      backgroundImage: `url('./rounds.png')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
       <nav>
         <ul className="flex sm:justify-between justify-evenly font-semibold items-center w-full h-fit mx-auto text-black py-3 sm:px-5">
           <li>
