@@ -40,7 +40,7 @@ function Login() {
     }
     if (response.ok) {
       sessionStorage.setItem("User", JSON.stringify(json.user));
-      sessionStorage.setItem("token", JSON.stringify(json.token));
+      sessionStorage.setItem("token", json.token);
       setNumber("");
       setName("");
       setLoading(false);
