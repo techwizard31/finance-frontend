@@ -92,7 +92,7 @@ function Rules() {
           <h2 className="text-3xl font-semibold text-[#04942C]">
             Game Overview
           </h2>
-          <ul className="list-disc list-inside">
+          <ul className="list-disc list-inside font-oxanium">
             <li>
               <strong>Initial Points:</strong> Each team begins with 10,000
               points.
@@ -117,11 +117,11 @@ function Rules() {
           </ul>
         </section>
 
-        <section className="space-y-4">
-          <h2 className="text-3xl font-semibold text-[#04942C]">
+        <section className="space-y-4 font-oxanium">
+          <h2 className="text-3xl font-semibold text-[#04942C] font-oxanium">
             Gameplay Rules
           </h2>
-          <ul className="list-disc list-inside space-y-2">
+          <ul className="list-disc list-inside space-y-2 font-oxanium">
             <li>
               <strong>Starting Portfolio:</strong> Each team starts with 10,000
               points to buy and trade commodities.
@@ -153,11 +153,11 @@ function Rules() {
           </ul>
         </section>
 
-        <section className="space-y-4">
-          <h2 className="text-3xl font-semibold text-[#04942C]">
+        <section className="space-y-4 font-oxanium">
+          <h2 className="text-3xl font-semibold text-[#04942C] font-oxanium">
             Additional Rules
           </h2>
-          <ul className="list-disc list-inside space-y-2">
+          <ul className="list-disc list-inside space-y-2 font-oxanium">
             <li>
               <strong>Trading Freeze:</strong> No changes allowed after the
               trading window closes.
@@ -177,11 +177,11 @@ function Rules() {
           </ul>
         </section>
 
-        <section className="space-y-4">
-          <h2 className="text-3xl font-semibold text-[#04942C]">
+        <section className="space-y-4 font-oxanium">
+          <h2 className="text-3xl font-semibold text-[#04942C] font-oxanium">
             Example Round Flow
           </h2>
-          <ol className="list-decimal list-inside space-y-2">
+          <ol className="list-decimal list-inside space-y-2 font-oxanium">
             <li>Team starts with 10,000 points.</li>
             <li>
               During the trading period, buys 2,000 points of crude oil and
@@ -199,7 +199,7 @@ function Rules() {
           </ol>
         </section>
         <button
-          className={`text-2xl font-bold text-white ${
+          className={`text-2xl font-bold text-white font-oxanium ${
             isButtonEnabled ? "hover:text-primary" : "text-gray-500"
           } w-24 h-max p-1 transition-all duration-200 rounded-lg ${
             isButtonEnabled ? "bg-accent hover:scale-105" : "bg-gray-400"
