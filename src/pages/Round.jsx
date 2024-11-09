@@ -1,5 +1,6 @@
 import React, {useState,useEffect}from 'react'
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
+import Card from '../components/Card'
 
 function Round() {
   const navigate = useNavigate();
@@ -45,6 +46,9 @@ function Round() {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [isRedirecting]);
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
 
   const getResult = async () => {
     const response = await fetch(`${process.env.REACT_APP_LINK}/`, {

@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Spinner from "../component/Spinner";
+import Spinner from "../components/Spinner";
 
 function Login() {
   const [number, setNumber] = useState("");

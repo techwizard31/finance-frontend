@@ -42,7 +42,7 @@ function Rules() {
     <div className="min-h-screen bg-radial-topbottom-corners sm:px-6 py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-8">
         <div className=" w-full md:h-28 flex flex-row items-center px-4">
-          <Image
+          <img
             src={"/Finance Logo.png"}
             width={100}
             height={100}
@@ -52,7 +52,7 @@ function Rules() {
           <h4 className="font-playflair sm:text-7xl text-5xl tablet:text-4xl sm_mobile:text-3xl bg-gradient-to-r from-[#160f4a] via-[#04942C] to-[#160f4a] bg-clip-text text-transparent text-center flex-1">
             Era Of Estates
           </h4>
-          <Image
+          <img
             src={"/SAC Logo.png"}
             width={100}
             height={100}
