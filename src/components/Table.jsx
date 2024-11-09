@@ -22,6 +22,10 @@ export function TableDemo({ type }) {
     const commodity = Data.find((item) => item.Commodityname === name);
     return commodity ? commodity.prices : null;
   }
+  function getImg(name) {
+    const commodity = Data.find((item) => item.Commodityname === name);
+    return commodity ? commodity.Image : null;
+  }
 
   function getChange(name, round) {
     const commodity = Data.find((item) => item.Commodityname === name);
@@ -78,8 +82,15 @@ export function TableDemo({ type }) {
           user?.cart.map((invoice) => (
             <TableRow key={invoice._id}>
               <TableCell className="font-medium">
-                <ChartCandlestick />
+              <div className='flex gap-5 mb-2 items-center'>
+                <img
+                  src={getImg(invoice.Img)}
+                  alt={invoice.item}
+                  width={30}
+                  height={30}
+                />
                 {invoice.item}
+              </div>
               </TableCell>
               <TableCell>
                 {round >= 2
