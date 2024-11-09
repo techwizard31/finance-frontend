@@ -39,7 +39,6 @@ export function DialogDemo({ type, item, price, number }) {
     }
     setLoading(true);
     setUnits(Number(units));
-    console.log('buy')
     const response = await fetch(
       `https://finance-backend-2ssq.onrender.com/cart/buy`,
       {
@@ -76,7 +75,6 @@ export function DialogDemo({ type, item, price, number }) {
   };
   
   const handleSell = async () => {
-    console.log('sell')
     const token = sessionStorage.getItem("token");
     if (units < 1) {
       return toast.error("Give valid inputs");
@@ -170,7 +168,6 @@ export function DialogDemo({ type, item, price, number }) {
           )}
         </Dialog>
       }
-      {loading && <Loader />}
     </>
   );
 }
