@@ -20,9 +20,9 @@ function Round() {
       setIsRedirecting(true);
       if (round >= 10) {
         // getResult();
-        window.location.href = "/result";
+        navigate("/Result");
       } else {
-        window.location.href = `/rounds?round=${round + 1}`;
+        navigate(`/rounds/${round + 1}`);
       }
     }, 60000);
 
@@ -51,29 +51,30 @@ function Round() {
   const seconds = timeLeft % 60;
 
   const getResult = async () => {
-    const response = await fetch(`${process.env.REACT_APP_LINK}/`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-        body: JSON.stringify({
-          user: user,
-        }),
-      },
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_LINK}/cart/myresult`,
+      {
+        method: "POST",
+        body: JSON.stringify({ user: user }),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
+    if (!response.ok) {
+      console.log(json.error);
+    }
     if (response.ok) {
-      const json = await response.json();
-      sessionStorage.setItem("User", JSON.stringify(json));
-    } else {
-      console.log(response.statusText);
+      sessionStorage.setItem("User", JSON.stringify(json.user));
     }
   };
 
   const handleQuit = () => {
     getResult();
-     navigate('/Result')
+    navigate("/Result");
   };
-
 
   return (
     <section className="bg-rounds min-h-screen">
@@ -112,7 +113,7 @@ function Round() {
         <Card type={"Sell"} />
       </div>
     </section>
-  )
+  );
 }
 
-export default Round
+export default Round;
