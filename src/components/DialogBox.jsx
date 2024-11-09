@@ -38,7 +38,7 @@ export function DialogDemo({ type, item, price, number }) {
     }
     setLoading(true);
     setUnits(Number(units));
-    const response = await fetch(`${process.env.REACT_APP_LINK}/cart/buy`, {
+    const response = await fetch(`https://finance-backend-2ssq.onrender.com/cart/buy`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -79,7 +79,7 @@ export function DialogDemo({ type, item, price, number }) {
     setLoading(true);
     setUnits(Number(units));
 
-    const response = await fetch(`${process.env.REACT_APP_LINK}/cart/sell`, {
+    const response = await fetch(`https://finance-backend-2ssq.onrender.com/cart/sell`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",

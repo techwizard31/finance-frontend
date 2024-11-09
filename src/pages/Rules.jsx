@@ -30,7 +30,7 @@ function Rules() {
 
   const handleResult = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_LINK}/cart/myresult`,
+      `https://finance-backend-2ssq.onrender.com/cart/myresult`,
       {
         method: "POST",
         body: JSON.stringify({ user: user }),

@@ -16,7 +16,7 @@ function Result() {
 
   const getResult = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_LINK}/cart/myresult`,
+      `https://finance-backend-2ssq.onrender.com/cart/myresult`,
       {
         method: "POST",
         body: JSON.stringify({ user: user }),
@@ -36,7 +36,7 @@ function Result() {
   };
 
   const getWinner = async () => {
-    const response = await fetch(`${process.env.REACT_APP_LINK}/cart/result`, {
+    const response = await fetch(`https://finance-backend-2ssq.onrender.com/cart/result`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",

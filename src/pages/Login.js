@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handelStart = async () => {
-    const response = await fetch(`${process.env.REACT_APP_LINK}/`, {
+    const response = await fetch(`https://finance-backend-2ssq.onrender.com/`, {
       method: "GET",
       headers: { "Content-type": "application/json" },
     });
@@ -25,7 +25,7 @@ function Login() {
       return toast.error("Give a valid phonenumber");
     }
     setNumber(Number(number));
-    const response = await fetch(`${process.env.REACT_APP_LINK}/login`, {
+    const response = await fetch(`https://finance-backend-2ssq.onrender.com/login`, {
       method: "POST",
       body: JSON.stringify({ phonenumber: number,name:name }),
       headers: { "Content-type": "application/json" },
