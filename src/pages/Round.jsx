@@ -88,11 +88,7 @@ function Round() {
   };
 
   return (
-    <div className="min-h-screen" style={{
-      backgroundImage: `url('./new.png')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }}>
+    <div className="min-h-screen bg-geometric-teal-pattern">
       <nav>
         <ul className="flex sm:justify-between justify-evenly font-semibold items-center w-full h-fit mx-auto text-black py-3 sm:px-5">
           <li>

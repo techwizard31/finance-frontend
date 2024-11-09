@@ -24,7 +24,14 @@ module.exports = {
         'radial-topbottom-corners': `
           radial-gradient(circle at top left, #04942C 4%, transparent 30%),
           radial-gradient(circle at bottom right, #160f4a 4%, transparent 30%)
-        `
+        `,
+        'geometric-teal-pattern': `
+          linear-gradient(45deg, #134e4a 1%, transparent 10%),
+          linear-gradient(-45deg, #134e4a 1%, transparent 10%),
+          linear-gradient(45deg, transparent 90%, #134e4a 99%),
+          linear-gradient(-45deg, transparent 90%, #134e4a 99%),
+          linear-gradient(to right, #042f2e, #115e59)
+        `,
       },
       boxShadow: {
         'inset-custom': 'inset -4px -4px 0 rgba(0, 0, 0, 0.25)',
