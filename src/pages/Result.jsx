@@ -55,13 +55,9 @@ function Result() {
   };
 
   useEffect(() => {
-    if (user && user.finalamount === 0) {
-      getResult();
-    }
-    if (token) {
-      getWinner();
-    }
-  }, [user, token]);
+    getResult();
+    getWinner()
+  }, []);
 
   return (
     <section className="h-screen bg-radial-bottom-corners px-2">
