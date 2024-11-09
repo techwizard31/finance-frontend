@@ -5,6 +5,7 @@ import Card from '../components/Card'
 function Round() {
   const navigate = useNavigate();
   let { round } = useParams();
+  round = parseInt(round, 10);
   const [timeLeft, setTimeLeft] = useState(60);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const token = sessionStorage.getItem("token");
@@ -13,7 +14,13 @@ function Round() {
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timerInterval);
+          return 0; // Stop at zero
+        }
+        return prevTime - 1;
+      });
     }, 1000);
 
     const timeout = setTimeout(() => {
@@ -94,7 +101,7 @@ function Round() {
             <li>
               <button
                 className="bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-2 sm:px-4 py-1 sm:py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
-                onClick={handleQuit}
+                onClick={()=>handleQuit()}
               >
                 <span className="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
                 Quit

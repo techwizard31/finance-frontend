@@ -28,7 +28,7 @@ function Result() {
     );
     const json = await response.json();
     if (!response.ok) {
-      console.log(json.error);
+      console.log(json);
     }
     if (response.ok) {
       sessionStorage.setItem("User", JSON.stringify(json.user));
