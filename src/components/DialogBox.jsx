@@ -24,10 +24,10 @@ export function DialogDemo({ type, item, price, number }) {
   const user = userData ? JSON.parse(userData) : null;
 
   const handleSubmit = (event) => {
-    //event.preventDefault();
+    event.preventDefault();
     setIsDialogOpen(false);
   };
-  
+
   const handleBuy = async () => {
     const token = sessionStorage.getItem("token");
     handleSubmit();
@@ -39,20 +39,23 @@ export function DialogDemo({ type, item, price, number }) {
     }
     setLoading(true);
     setUnits(Number(units));
-    const response = await fetch(`https://finance-backend-2ssq.onrender.com/cart/buy`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        user: user,
-        item: item,
-        number: units,
-        price: price,
-        round: round,
-      }),
-    });
+    const response = await fetch(
+      `https://finance-backend-2ssq.onrender.com/cart/buy`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user: user,
+          item: item,
+          number: units,
+          price: price,
+          round: round,
+        }),
+      }
+    );
 
     if (!response.ok) {
       toast.error(response.statusText);
@@ -66,7 +69,7 @@ export function DialogDemo({ type, item, price, number }) {
       setUnits(1);
       setLoading(false);
       toast.success("Transaction Successful");
-    }    
+    }
   };
 
   const handleSell = async () => {
@@ -81,20 +84,23 @@ export function DialogDemo({ type, item, price, number }) {
     setLoading(true);
     setUnits(Number(units));
 
-    const response = await fetch(`https://finance-backend-2ssq.onrender.com/cart/sell`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        user: user,
-        item: item,
-        number: units,
-        price: price,
-        round: round,
-      }),
-    });
+    const response = await fetch(
+      `https://finance-backend-2ssq.onrender.com/cart/sell`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user: user,
+          item: item,
+          number: units,
+          price: price,
+          round: round,
+        }),
+      }
+    );
 
     if (!response.ok) {
       toast.error(response.statusText);
@@ -108,59 +114,57 @@ export function DialogDemo({ type, item, price, number }) {
       setUnits(1);
       setLoading(false);
       toast.success("Transaction Successful");
-    }    
+    }
   };
 
   return (
     <>
-    {
-      (
-        <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">{type === "Buy" ? "Buy" : "Sell"}</Button>
-      </DialogTrigger>
       {
-        isDialogOpen &&(
-          <DialogContent className="sm:max-w-[425px] bg-white">
-        <DialogHeader>
-          <DialogTitle>Cart</DialogTitle>
-          <DialogDescription>
-            Enter the no. of units you want to {type}
-          </DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="No" className="text-right">
-              Units
-            </Label>
-            <Input
-              id="No"
-              defaultValue={units}
-              type="number"
-              onChange={(e) => setUnits(e.target.value)}
-              className="col-span-3 border-2 border-black"
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button
-            type="submit"
-            className="bg-black text-white"
-            onClick={() => { if (type === "Buy") 
-              { handleBuy();
-              }
-              else { handleSell()
-              } }}
-          >
-            {type === "Buy" ? "Buy" : "Sell"} Items
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-        )
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline">{type === "Buy" ? "Buy" : "Sell"}</Button>
+          </DialogTrigger>
+          {isDialogOpen && (
+            <DialogContent className="sm:max-w-[425px] bg-white">
+              <DialogHeader>
+                <DialogTitle>Cart</DialogTitle>
+                <DialogDescription>
+                  Enter the no. of units you want to {type}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="No" className="text-right">
+                    Units
+                  </Label>
+                  <Input
+                    id="No"
+                    defaultValue={units}
+                    type="number"
+                    onChange={(e) => setUnits(e.target.value)}
+                    className="col-span-3 border-2 border-black"
+                  />
+                </div>
+              </div>
+              <DialogFooter>
+                <Button
+                  type="submit"
+                  className="bg-black text-white"
+                  onClick={() => {
+                    if (type === "Buy") {
+                      handleBuy();
+                    } else {
+                      handleSell();
+                    }
+                  }}
+                >
+                  {type === "Buy" ? "Buy" : "Sell"} Items
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          )}
+        </Dialog>
       }
-    </Dialog>
-      )
-    }
     </>
-  )
+  );
 }
