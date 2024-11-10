@@ -34,7 +34,7 @@ function Result() {
       if (!response.ok) {
         console.log(json);
       } else {
-        sessionStorage.setItem("User", JSON.stringify(json.user));
+        sessionStorage.setItem("User", JSON.stringify(json));
       }
     } catch (error) {
       console.error("Error fetching results:", error);
