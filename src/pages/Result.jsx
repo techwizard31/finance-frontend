@@ -42,6 +42,7 @@ function Result() {
   };
   
   const getWinner = async () => {
+    await getResult();
     try {
       const response = await fetch(
         `https://finance-backend-2ssq.onrender.com/cart/result`,
@@ -65,7 +66,6 @@ function Result() {
   };  
 
   useEffect(() => {
-    getResult();
     getWinner()
   }, []);
 
