@@ -60,7 +60,7 @@ function Round() {
   };
 
   useEffect(() => {
-    setTimeLeft(360); // Reset timer to 60 seconds whenever round changes
+    setTimeLeft(300); // Reset timer to 60 seconds whenever round changes
 
     const timerInterval = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -74,14 +74,14 @@ function Round() {
 
     const timeout = setTimeout(() => {
       setIsRedirecting(true);
-      if (round >= 10) {
+      if (round >= 12) {
         getResult();
         navigate("/Result");
       } else {
         toast.success("Moving on to the next round")
-        navigate(`/rounds/${round + 1}`);
+        navigate(`/rounds/${round + 1}`)
       }
-    }, 360000);
+    }, 300000);
 
     return () => {
       clearInterval(timerInterval);
