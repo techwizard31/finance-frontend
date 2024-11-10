@@ -11,7 +11,7 @@ import Data from "../lib/data.jsx";
 
 function Result() {
   const token = sessionStorage.getItem("token");
-  const [winner, setWinner] = useState();
+  const [winner, setWinner] = useState([]);
   const userData = sessionStorage.getItem("User");
   const user = userData ? JSON.parse(userData) : null;
   

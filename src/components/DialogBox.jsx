@@ -13,7 +13,6 @@ import { Label } from "./label.tsx";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-import Loader from "./Loader.jsx";
 
 export function DialogDemo({ type, item, price, number }) {
   const [isDialogOpen, setIsDialogOpen] = useState(true);
