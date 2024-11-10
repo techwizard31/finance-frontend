@@ -35,7 +35,7 @@ function Round() {
   };
 
   const QuitResult = async () => {
-    if(user.chance==2){
+    if(user.chance == 2){
       getResult();
       navigate("/Result");
     }

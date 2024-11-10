@@ -56,7 +56,11 @@ function Rules() {
       if (user.round >= 10) {
         handleResult();
         navigate("/Result");
-      } else {
+      } else if(user.chance === 2){
+        handleResult();
+        navigate("/Result")
+      } 
+      else {
         navigate(`/rounds/${user.round}`);
       }
     }
