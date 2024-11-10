@@ -11,9 +11,9 @@ import Data from "../lib/data.jsx";
 
 function Result() {
   const token = sessionStorage.getItem("token");
-  const [winner, setWinner] = useState([]);
   const userData = sessionStorage.getItem("User");
   const user = userData ? JSON.parse(userData) : null;
+  const [winner, setWinner] = useState([{name:user.name,finalamount:user.finalamount}]);
   
   const getResult = async () => {
     try {
@@ -116,7 +116,7 @@ function Result() {
             <TableBody>
               {winner && winner.length > 0 ? (
                 winner.map((invoice, index) => (
-                  <TableRow key={invoice.name}>
+                  <TableRow key={index}>
                     <TableCell className="font-medium text-center">
                       {index + 1} 
                     </TableCell>
