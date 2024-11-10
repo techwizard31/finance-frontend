@@ -33,7 +33,7 @@ export function TableDemo({ type }) {
     const prices = commodity.prices;
 
     if (round > 2) {
-      const change = ((prices[round - 1] - prices[prevround]) / prices[prevround]) * 100;
+      const change = ((prices[round-1] - prices[prevround-1]) / prices[prevround-1]) * 100;
       return change.toFixed(2);
     } else {
       return prices[round - 1];
