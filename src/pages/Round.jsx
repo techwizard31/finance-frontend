@@ -34,8 +34,33 @@ function Round() {
     }
   };
 
+  const QuitResult = async () => {
+    if(user.chance==2){
+      getResult();
+      navigate("/Result");
+    }
+    const response = await fetch(
+      `https://finance-backend-2ssq.onrender.com/cart/quit`,
+      {
+        method: "POST",
+        body: JSON.stringify({ user: user }),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
+    if (!response.ok) {
+      console.log(json.error);
+    }
+    if (response.ok) {
+      sessionStorage.setItem("User", JSON.stringify(json.user));
+    }
+  };
+
   useEffect(() => {
-    setTimeLeft(60); // Reset timer to 60 seconds whenever round changes
+    setTimeLeft(360); // Reset timer to 60 seconds whenever round changes
 
     const timerInterval = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -56,7 +81,7 @@ function Round() {
         toast.success("Moving on to the next round")
         navigate(`/rounds/${round + 1}`);
       }
-    }, 60000);
+    }, 360000);
 
     return () => {
       clearInterval(timerInterval);
@@ -83,7 +108,7 @@ function Round() {
   const seconds = timeLeft % 60;
 
   const handleQuit = () => {
-    getResult();
+    QuitResult();
     navigate("/Result");
   };
 

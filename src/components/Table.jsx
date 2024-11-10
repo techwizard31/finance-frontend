@@ -27,13 +27,13 @@ export function TableDemo({ type }) {
     return commodity.Image;
   }
 
-  function getChange(name, round) {
+  function getChange(name, prevround) {
     const commodity = Data.find((item) => item.Commodityname === name);
     if (!commodity) return null;
     const prices = commodity.prices;
 
     if (round > 2) {
-      const change = ((prices[round - 1] - prices[round - 2]) / prices[round - 2]) * 100;
+      const change = ((prices[round - 1] - prices[prevround]) / prices[prevround]) * 100;
       return change.toFixed(2);
     } else {
       return prices[round - 1];
@@ -46,7 +46,7 @@ export function TableDemo({ type }) {
         <TableRow>
           <TableHead>Commodity</TableHead>
           <TableHead>
-            {type === "Buy" ? "Cost Price" : round >= 2 ? "% Change" : "Current Price"}
+            {type === "Buy" ? "Per LOT Price" : round >= 2 ? "% Change" : "Current Price"}
           </TableHead>
           {type !== "Buy" && <TableHead>No</TableHead>}
           <TableHead>{type === "Buy" ? "Buy" : "Sell"}</TableHead>
@@ -93,8 +93,8 @@ export function TableDemo({ type }) {
               </TableCell>
               <TableCell>
                 {round >= 2
-                  ? `${getChange(invoice.item, round)} %`
-                  : getChange(invoice.item, round)}
+                  ? `${getChange(invoice.item, invoice.round)} %`
+                  : getChange(invoice.item, invoice.round)}
               </TableCell>
               <TableCell>{invoice.number}</TableCell>
               <TableCell>

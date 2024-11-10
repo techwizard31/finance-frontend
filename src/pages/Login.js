@@ -96,7 +96,7 @@ function Login() {
             <div className="space-y-5">
               <input
                 className="w-full h-12 border border-gray-800 px-3 rounded-lg"
-                placeholder="Username"
+                placeholder="Team"
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
