@@ -74,7 +74,7 @@ function Round() {
 
     const timeout = setTimeout(() => {
       setIsRedirecting(true);
-      if (round >= 12) {
+      if (round >= 22) {
         getResult();
         navigate("/Result");
       } else {
