@@ -27,7 +27,7 @@ export function TableDemo({ type }) {
     return commodity.Image;
   }
 
-  function getChange(name, prevround) {
+  function getChange(name, prevround,round) {
     const commodity = Data.find((item) => item.Commodityname === name);
     if (!commodity) return null;
     const prices = commodity.prices;
@@ -93,8 +93,8 @@ export function TableDemo({ type }) {
               </TableCell>
               <TableCell>
                 {round >= 2
-                  ? `${getChange(invoice.item, invoice.round)} %`
-                  : getChange(invoice.item, invoice.round)}
+                  ? `${getChange(invoice.item, invoice.round,round)} %`
+                  : getChange(invoice.item, invoice.round,round)}
               </TableCell>
               <TableCell>{invoice.number}</TableCell>
               <TableCell>
