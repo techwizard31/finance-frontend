@@ -16,7 +16,7 @@ function Rules() {
       const currentTime = new Date();
       const currentHour = currentTime.getHours();
 
-      if (currentHour >= 0) {
+      if (currentHour >= 12) {
         setIsButtonEnabled(true);
       }
     };
@@ -106,8 +106,8 @@ function Rules() {
               team.
             </li>
             <li>
-              <strong>Commodities:</strong> The simulation includes 11
-              commodities: Crude Oil, Gold, Copper, Natural Gas, Iron Ore,
+              <strong>Commodities:</strong> The simulation includes 10
+              commodities: Crude Oil, Gold, Copper, Iron Ore,
               Wheat, Cotton, Rubber, Steel, Corn, Urea.
             </li>
             <li>
