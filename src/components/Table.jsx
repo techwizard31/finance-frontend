@@ -99,7 +99,7 @@ export function TableDemo({ type }) {
                   </div>
                 </TableCell>
                 <TableCell>
-                  {getChange(invoice.item, invoice.round, round)} %
+                 {round >=2 ? `${getChange(invoice.item, invoice.round, round)} %`: `${getChange(invoice.item, invoice.round, round)}`} 
                 </TableCell>
                 <TableCell>{invoice.number}</TableCell>
                 <TableCell>
